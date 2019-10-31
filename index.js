@@ -7,12 +7,14 @@ $(document).ready(function() {
         //add this new item as it's own <li> in the html
         $('ul').append( '<li><span class="shopping-item">' + newItem + '</span><div class="shopping-item-controls"><button class="shopping-item-toggle"><span class="button-label">check</span></button><button class="shopping-item-delete"><span class="button-label">delete</span></button></div></li>' )  
     });
+    
     //when the check button is clicked, the strikethrough code is added
-    /*$( "button.shopping-item-toggle" ).click(function() {
-        $( ".shopping-item" ).toggleClass( "shopping-item__checked" );
-    });*/
-    $( document ).on( "click", function(event) {
-        $( event.target ).closest( ".shopping-item" ).toggleClass( "shopping-item__checked" );
+    $('.shopping-list').on('click', '.shopping-item-toggle', function(event) {
+        $(this).closest('.shopping-item-controls').siblings('.shopping-item').toggleClass('shopping-item__checked');
     });
-
+    
+    //when the delete button is clicked, remove the entire html code that js created in line 8
+    $('.shopping-list').on('click', '.shopping-item-delete', function(event) {
+        this.closest("li").remove();
+    })
 })
